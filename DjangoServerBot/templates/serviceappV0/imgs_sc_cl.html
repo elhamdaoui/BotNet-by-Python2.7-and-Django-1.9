@@ -1,0 +1,20 @@
+{% extends "serviceapp/accueil.html" %}
+
+{% block title %}Screens{% endblock %}
+{% block content %}
+    <div> images </div>
+    <table border="1px">
+      <thead>
+        <tr><th>date insertion</th><th>name</th><!--th>path</th--><th>image</th></tr>
+      </thead>
+      <tbody>
+    {% for ex in execs%}
+        <tr>
+          <td>{{ ex.date_insertion_ae }}</td>
+          <td>{{ ex.img_sse.name_affiche }}</td>
+          <td><img style="width:300px;height:300px;" src="{{ ex.img_sse.url }}"/></td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock%}

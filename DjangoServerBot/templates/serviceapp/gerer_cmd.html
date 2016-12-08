@@ -1,0 +1,157 @@
+{% load staticfiles %}
+{% url 'gerercommande' as gerercmd %}
+{% url 'accueil' as acl %}
+{% if existe == False%}
+<div class="alert-danger">Commande non existe !!</div>
+{% else %}
+  {% if action == "afficher" %}
+        {% if cmd.type_cmd.nom == "KeyLogger" %}
+        <table class="table table-bordered">
+          <tr><td rowspan="2" colspan="2">
+            <img src="{% static 'serviceapp/imgs/keyboard.png' %}" alt="Keylogger" data-toggle="tooltip" data-placement="right" title="Commande Keylogger" class="img-circle logo_notification" style="background-color:orange;"/>
+          </td><td><span class="label label-primary">Titre</span></td><td>{{ cmd.titre }}</td></tr>
+          <tr><td><span class="label label-primary">Date ajout</span></td><td>{{ cmd.date_ajout}}</td></tr>
+          <tr><td><span class="label label-primary">Date debut</span></td><td>{{ cmd.date_debut }}</td><td><span class="label label-primary">Date fin</span></td><td>{{ cmd.date_fin }}</td></tr>
+          <tr><td><span class="label label-primary">Durée</span></td><td>{{ cmd.duree }}</td><td><span class="label label-danger">Période d'envoi</span></td><td><kbd>{{ cmd.texte }}</kbd> <small>secondes</small></td></tr>
+        </table>
+        {% elif cmd.type_cmd.nom == "ScreenShot" %}
+        <table class="table table-bordered">
+          <tr><td rowspan="2" colspan="2">
+            <img src="{% static 'serviceapp/imgs/screenshot.png' %}" alt="ScreenShot" data-toggle="tooltip" data-placement="right" title="Commande ScreenShot" class="img-circle logo_notification" style="background-color:orange;"/>
+          </td><td><span class="label label-primary">Titre</span></td><td>{{ cmd.titre }}</td></tr>
+          <tr><td><span class="label label-primary">Date ajout</span></td><td>{{ cmd.date_ajout}}</td></tr>
+          <tr><td><span class="label label-primary">Date debut</span></td><td>{{ cmd.date_debut }}</td><td><span class="label label-primary">Date fin</span></td><td>{{ cmd.date_fin }}</td></tr>
+          <tr><td><span class="label label-primary">Durée</span></td><td>{{ cmd.duree }}</td><td><span class="label label-danger">Période d'envoi</span></td><td><kbd>{{ cmd.texte }}</kbd> <small>secondes</small></td></tr>
+        </table>
+        {% elif cmd.type_cmd.nom == "Upload" %}
+        <table class="table table-bordered">
+          <tr><td rowspan="3" colspan="2">
+            <img src="{% static 'serviceapp/imgs/upload.png' %}" alt="Upload" data-toggle="tooltip" data-placement="right" title="Commande Upload" class="img-circle logo_notification" style="background-color:orange;"/>
+          </td><td><span class="label label-primary">Titre</span></td><td>{{ cmd.titre }}</td></tr>
+          <tr><td><span class="label label-primary">Date ajout</span></td><td>{{ cmd.date_ajout}}</td></tr>
+          <tr><td><span class="label label-primary">Date debut</span></td><td>{{ cmd.date_debut }}</td></tr>
+          <tr><td><span class="label label-primary">Emplacement</span></td><td colspan="3">{{ cmd.texte }}</td></tr>
+        </table>
+        {% elif cmd.type_cmd.nom == "Download" %}
+        <table class="table table-bordered">
+          <tr><td rowspan="3" colspan="2">
+            <img src="{% static 'serviceapp/imgs/download.png' %}" alt="Download" data-toggle="tooltip" data-placement="right" title="Commande Download" class="img-circle logo_notification" style="background-color:orange;"/>
+          </td><td><span class="label label-primary">Titre</span></td><td>{{ cmd.titre }}</td></tr>
+          <tr><td><span class="label label-primary">Date ajout</span></td><td>{{ cmd.date_ajout}}</td></tr>
+          <tr><td><span class="label label-primary">Date debut</span></td><td colspan="3">{{ cmd.date_debut }}</td></tr>
+          <tr><td><span class="label label-primary">URL</span></td><td colspan="3">{{ cmd.url }}</td></tr>
+          <tr><td><span class="label label-primary">Emplacement</span></td><td colspan="3">{{ cmd.texte }}</td></tr>
+        </table>
+        {% elif cmd.type_cmd.nom == "Shell" %}
+        <table class="table table-bordered">
+          <tr><td rowspan="2" colspan="2">
+            <img src="{% static 'serviceapp/imgs/shell.png' %}" alt="Shell" data-toggle="tooltip" data-placement="right" title="Commande Shell" class="img-circle logo_notification" style="background-color:orange;"/>
+          </td><td><span class="label label-primary">Titre</span></td><td>{{ cmd.titre }}</td></tr>
+          <tr><td><span class="label label-primary">Date ajout</span></td><td>{{ cmd.date_ajout}}</td></tr>
+          <tr><td><span class="label label-primary">Date debut</span></td><td>{{ cmd.date_debut }}</td><td><span class="label label-primary">Date fin</span></td><td>{{ cmd.date_fin }}</td></tr>
+          <tr><td><span class="label label-primary">Commandes</span></td><td colspan="3">{{ cmd.texte }}</td></tr>
+        </table>
+        {% endif %}
+  {% elif action == "supprimer_bdd" %}
+      {% if teste == True %}
+        <div class="alert-success">Commande supprimé avec succès</div>
+        <script type="text/javascript">$("#cslt_commandes").trigger("click",function(){});</script>
+      {% else %}
+        <div class="alert-warning">Erreur: Commande non supprimé.</div>
+      {% endif %}
+  {% elif action == "modifier" %}
+  <form method="post" action="{{ gerercmd }}" class="form-horizontal">
+    <input type="hidden" name="id_cmd" value="{{ cmd.id_cmd }}"/>
+    <input type="hidden" name="action" value="modifier_bdd"/>
+    <div class="input-group">
+      <div class="input-group-addon">Titre</div>
+      <input type="text" name="titre" class="form-control" id="" placeholder="titre" value="{{ cmd.titre }}">
+    </div><br/>
+    <div class="input-group">
+      <div class="input-group-addon">Date debut</div>
+        <input type="text" name="date_debut" class="form-control" id="" value="{{ cmd.date_debut_for }}" placeholder="yyyy-mm-dd hh:mm:ss">
+      <div class="input-group-addon">GMT+00:00</div>
+    </div><br/>
+    {% if cmd.type_cmd.nom == "KeyLogger" or cmd.type_cmd.nom == "ScreenShot" %}
+    <div class="input-group">
+      <div class="input-group-addon">Date Fin</div>
+        <input type="text" name="date_fin" class="form-control" id="" value="{{ cmd.date_fin_for }}" placeholder="yyyy-mm-dd hh:mm:ss">
+      <div class="input-group-addon">GMT+00:00</div>
+    </div><br/>
+    <div class="input-group">
+      <div class="input-group-addon">Période</div>
+        <input type="text" name="texte" class="form-control" id="" value="{{ cmd.texte }}" placeholder="en secondes">
+      <div class="input-group-addon">Secondes</div>
+    </div><br/>
+    {% endif %}
+
+    <div class="form-inline">
+      <label for="exampleInputName2">Active</label>
+      {% if cmd.active == True %}
+        <input type="checkbox" name="active" class="form-control" id="" checked="true">
+      {% else %}
+        <input type="checkbox" name="active" class="form-control" id="" >
+      {% endif %}
+    </div>
+
+
+    <input type="submit" name="envoyer" value="Envoyer" class="btn btn-success"/>
+  </form>
+  {% elif action == "modifier_bdd" %}
+
+      <script langage="javascript">
+          var test='{{ teste }}';
+          if(test=="True") alert("La commande a était modifiée avec succès.");
+          else alert("Erreur:\n {{ erreurs }}.");
+          document.location.href="{{ acl }}";
+      </script>
+  {% elif action == "affecter" %}
+
+  <form method="post" action="{{ gerercmd }}" class="form-horizontal">
+    <input type="hidden" name="id_cmd" value="{{ cmd.id_cmd }}"/>
+    <input type="hidden" name="action" value="affecter_bdd"/>
+    <table id="examplec" class="table table-striped" cellspacing="0" width="100%">
+        <caption>
+        </caption>
+        <thead>
+             <tr>
+             <th>Host name</th><th>Utilisateur</th><th>Pays</th><th>Système</th><th>S'affecter</th>
+              </tr>
+         </thead>
+        {% for clt in clients%}
+          {% if clt.actif == False %}
+            <tr class="danger">
+          {% else %}
+            <tr class="success">
+          {% endif %}
+             <td>{{clt.hostname}}</td>
+             <td>{{clt.USERNAME}}</td>
+             <td>{{clt.pays.nom}}</td>
+             <td>{{clt.syetem}}</td>
+             <td>
+               <input type="checkbox" name="client_{{ clt.id_client }}" {{clt.checked}} />
+
+             </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script type="text/javascript">
+        $('#examplec').DataTable();
+    </script>
+    <div class="input-group">
+      <label class="input-group-addon label label-danger" for='all_clients'>Commande pour tous </label>
+        <input type="checkbox" name="client_tous" id="all_clients" />
+    </div><br/>
+
+    <input type="submit" name="affecter" value="Affecter" class="btn btn-success"/>
+  </form>
+  {% elif action == "affecter_bdd" %}
+  <script langage="javascript">
+      var test='{{ teste }}';
+      if(test=="True") alert("Les agents sont affecter\n au commande avec succèes..");
+      else alert("Quelques agents ne sont pas affecté au commande. ");
+      document.location.href="{{ acl }}";
+  </script>
+  {% endif %}
+
+{% endif%}

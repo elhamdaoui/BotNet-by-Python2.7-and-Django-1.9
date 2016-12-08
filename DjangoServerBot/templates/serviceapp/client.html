@@ -1,0 +1,60 @@
+
+    {% for clt in clients%}
+    <div class="panel panel-default">
+      <div class="panel-heading">{{clt.USERNAME}} {{clt.hostname}}</div>
+      <div class="panel-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#" onclick="click_infos_tech_pers(1);">Profile</a></li>
+            <li role="presentation"><a href="#" onclick="click_infos_tech_pers(2);">Informations techniques</a></li>
+        </ul>
+        <div id="contenu_infoos">
+        <table id="contenu_infos_pers" class="table table-bordered" style="display:block;">
+          <tr> <td><span class="label label-default">ID</span></td><td id="id_bot">{{clt.id_client}}</td>
+               <td></td>
+               <td><span class="label label-default">Pays</span></td><td>{{clt.pays.nom}}</td>
+          </tr>
+          <tr> <td><span class="label label-default">USERNAME</span></td><td id="user_bot">{{clt.USERNAME}}</td>
+               <td></td>
+               <td><span class="label label-default">HOSTNAME</span></td><td id="host_bot">{{clt.hostname}} </td>
+          </tr>
+          <tr> <td><span class="label label-default">Date d'ajout</span></td><td>{{clt.dateajout}}</td>
+               <td></td>
+               <td><span class="label label-default">Dernier accès</span></td><td>{{clt.date_der_acces}} </td>
+          </tr>
+          <tr> <td><span class="label label-default">Actif</span></td><td id="act_bot">{{clt.actif}}</td>
+               <td></td>
+               <td><span class="label label-default">Vue</span></td><td>{{clt.vue}}</td>
+          </tr>
+          <tr> <td><span class="label label-default">Ville</span></td><td>{{clt.ville}}</td>
+               <td></td>
+               <td><span class="label label-default">Connecte</span></td><td>{{clt.connecte}}</td>
+          </tr>
+          <tr> <td><span class="label label-default">IP locale</span></td><td>{{clt.ipadresse.ip_locale}}</td>
+               <td></td>
+               <td><span class="label label-default">IP reçu</span></td><td>{{clt.ip_recue}}</td>
+          </tr>
+          <tr> <td><span class="label label-default">IP inter</span></td><td>{{clt.ipadresse.ip_inter}}</td>
+               <td><span class="label label-default">Chemin</span></td><td colspan="2">{{clt.src}}</td>
+          </tr>
+        </table>
+        <table id="contenu_infos_tech" class="table table-bordered" style="display:none;">
+          <tr> <td><span class="label label-default">Système</span></td><td>{{clt.syetem}}</td>
+               <td></td>
+               <td><span class="label label-default">USERDOMAIN</span></td><td>{{clt.USERDOMAIN}}</td>
+          </tr>
+          <tr> <td><span class="label label-default">PROCESSOR REVISION</span></td><td>{{clt.PROCESSOR_REVISION}}</td>
+               <td></td>
+               <td><span class="label label-default">PROCESSOR LEVEL</span></td><td>{{clt.processor_level}}</td>
+          </tr>
+          <tr> <td><span class="label label-default">PROCESSOR ARCHITECTURE</span></td><td>{{clt.PROCESSOR_ARCHITECTURE}}</td>
+               <td></td>
+               <td><span class="label label-default">NUMBER OF PROCESSORS</span></td><td>{{clt.NUMBER_OF_PROCESSORS}}</td>
+          </tr>
+          <tr>
+               <td><span class="label label-default">PROCESSOR IDENTIFIER</span></td><td colspan="4">{{clt.PROCESSOR_IDENTIFIER}}</td>
+          </tr>
+        </table>
+        </div>
+    </div>
+  </div>
+    {% endfor %}

@@ -1,0 +1,7 @@
+{% if action == "modif" %}
+  {% if mod == True %}
+    <div class='alert-success'>Modification avec succèes <span class="glyphicon glyphicon-ok-sign"></span></div>
+  {% else %}
+  <div class="alert-danger">Erreur est servenue lors du modification.<span class="glyphicon glyphicon-remove-sign"></span></div>
+  {% endif %}
+{% endif %}

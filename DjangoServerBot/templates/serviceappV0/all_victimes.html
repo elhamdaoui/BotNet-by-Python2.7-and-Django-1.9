@@ -1,0 +1,18 @@
+{% extends "serviceapp/accueil.html" %}
+
+{% block title %}Page Cllients{% endblock %}
+{% block content %}
+<table>
+    <caption> Les Client </caption>
+    <thead>
+         <tr style="background-color: #ffff47;">
+         <th>ID</th><th>Host name</th><th>IP adresse</th><th>Connectee</th><th></th>
+          </tr>
+     </thead>
+    {% for clt in clients%}
+        <tr style="background-color: #00ff47;">
+         <td>{{clt.id_client}}</td><td>{{clt.hostname}}</td><td>{{clt.ipadresse}}</td><td>{{clt.connecte}}</td><td><input type="button" value="Show messages"/></td>
+          </tr>
+    {% endfor %}
+</table>
+{% endblock%}

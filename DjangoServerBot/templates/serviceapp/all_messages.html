@@ -1,0 +1,23 @@
+{% extends "serviceapp/accueil.html" %}
+
+{% block title %}Page messgaes{% endblock %}
+{% block content %}
+<table>
+    <caption> Les messages </caption>
+    <thead>
+         <tr style="background-color: #ffff47;">
+         <th>ID Msg</th><th>Texte</th><th>Date message</th><th>Vue</th><th>Client Host name</th><th>Client IP</th><th>ID Client</th>
+          </tr>
+     </thead>
+    {% for msg in messages%}
+        <tr style="background-color: #00ff47;">
+         <td>{{msg.id_message}}</td><td>
+             {% for ligne in msg.text%}
+             {{ligne}} <br/>
+             {% endfor %}
+
+         </td><td>{{msg.datem}}</td><td>{{msg.vue}}</td><td>{{msg.client.hostname}}</td><td>{{msg.client.ipadresse}}</td><td>{{msg.client.id_client}}</td>
+          </tr>
+    {% endfor %}
+</table>
+{% endblock%}

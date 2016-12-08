@@ -1,0 +1,22 @@
+{% extends "serviceapp/accueil.html" %}
+{% block title %}
+{% if choix == 'Message'%}
+	Ajouter messgae
+{% elif choix == 'Client'%}
+	Ajouter client
+{% endif %}
+{% endblock %}
+{% block content %}
+
+{% if choix == "Client"%}
+	<form method="post" action="../ajouterdon/" enctype="multipart/form-data" class="">{% csrf_token %}
+		<div><input type="text" value="" name="hostname"/></div>
+		<div><input type="text" value="" name="ipadresse"/></div>
+		<div><input type="text" value="" name="message"/></div>
+		<div><input type="submit" value="envoyer" name="envoyer"/></div>
+	</form>
+{% elif choix == "Message"%}
+<div>ajouter Message</div>
+{% endif %}
+
+{% endblock%}

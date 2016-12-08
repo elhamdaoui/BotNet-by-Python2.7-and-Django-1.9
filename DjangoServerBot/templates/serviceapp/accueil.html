@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="fr">
+  <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+
+    <title>{% block title %}Mon service{% endblock %}</title>
+    <link href="{% static 'serviceapp/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+	  <link href="{% static 'serviceapp/css/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'serviceapp/css/dataTables.bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+	  <link href="{% static 'serviceapp/css/mystyle.css' %}" rel="stylesheet" type="text/css" />
+  </head>
+
+    <body>
+        <header>
+               <span class="" id="new_agents" style="position:fixed;right:4%;cursor:pointer;" data-toggle="tooltip" data-placement="bottom" title="Nouveaux agents non vus"><span id="cle_new_agents" class="cle_not glyphicon glyphicon-user btn-lg"></span><span id="val_new_agents" class="val_not badge btn-lg">10</span></span>
+               <span class="" id="new_cmd_execs" style="position:fixed;right:11%;cursor:pointer;" data-toggle="tooltip" data-placement="bottom"  title="Nouvelles attacks exécutées"><span id="cle_new_cmd_execs" class="cle_not glyphicon glyphicon-thumbs-up btn-lg"></span><span id="val_new_cmd_execs" class="val_not badge btn-lg">10</span></span>
+               <span class="" id="new_executions" style="position:fixed;right:18%;cursor:pointer;" data-toggle="tooltip" data-placement="bottom"  title="Nouvelles exécutions"><span id="cle_new_executions" class="cle_not glyphicon glyphicon-tasks  btn-lg"></span><span id="val_new_executions" class="val_not badge btn-lg">10</span></span>
+          </table>
+        </header>
+        <nav id="navigation">
+            {% block nav %}
+            <div id="cslt_agents" class="nava"><label>Agents</label></div>
+            <div id="cslt_commandes" class="nava"><label>Commandes</label></div>
+            <!--div id="cslt_executions" class="">Executions</div-->
+            <div id="ajout_commandes" class="nava"><label>Ajouter commande</label></div>
+            <!--div id="ajout_exec" class="">Affécter commandes aux agents</div-->
+            <div id="parametres" class="nava"><label>Paramètres</label></div>
+            <div id="developpers" class="nava"><label>Développeurs</label></div>
+            <div id="deconnexion" class="nava"><label>Déconnexion</label></div>
+
+            {% endblock %}
+        </nav>
+        <section id="corps">
+            {% block corps %}<kbd>corps</kbd>{% endblock %}
+        </section>
+      <!-- Conteneur des notifications -->
+        <div id="cont_notofications" class="well">
+        <!--div id="cont_notofications"></div>
+        <button type="button" class="btn btn-default-lg" onclick="$('#cont_notofications_p').hide();">Cacher</button>
+      -->
+        </div>
+      <!-- large modal -->
+      <div class="modal fade bs-example-modal-lg" id="myLargeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myLargeModalLabel">title</h4>
+            </div>
+          <div class="modal-body" id="myLargeModalContenu">
+
+          </div>
+          <div class="modal-footer" id="myLargeModalFooter">
+            </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- Small Modal-->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body" id="myModalContenu">
+
+            </div>
+            <div class="modal-footer" id="myModalFooter">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <footer>© Copie Right AMHx16</footer>
+    </body>
+    <script type="text/javascript" src="{% static 'serviceapp/scripts/jquery-1.11.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'serviceapp/scripts/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'serviceapp/scripts/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'serviceapp/scripts/dataTables.bootstrap.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'serviceapp/scripts/myscript.js' %}"></script>
+      <script type="text/javascript" src="{% static 'serviceapp/scripts/notifications.js' %}"></script>
+</html>

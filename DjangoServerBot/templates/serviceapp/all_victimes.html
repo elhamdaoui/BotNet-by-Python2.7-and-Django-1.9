@@ -1,0 +1,34 @@
+<div class="alert alert-info" role="alert">
+    Tous les agents de notre Botnet
+</div>
+<table id="example2" class="table table-striped" cellspacing="0" width="100%">
+    <caption>
+    </caption>
+    <thead>
+         <tr>
+         <th>ID</th><th>Host name</th><th>Utilisateur</th><th>Pays</th><th>Système</th><th></th>
+          </tr>
+     </thead>
+    {% for clt in clients%}
+      {% if clt.actif == False %}
+        <tr class="danger">
+      {% else %}
+        <tr class="success">
+      {% endif %}
+         <td>{{clt.id_client}}</td>
+         <td>{{clt.hostname}}</td>
+         <td>{{clt.USERNAME}}</td>
+         <td>{{clt.pays.nom}}</td>
+         <td>{{clt.syetem}}</td>
+         <td>
+           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myLargeModal" onclick="info_agent_click({{clt.id_client}});">
+             <span class="glyphicon glyphicon-info-sign"></span>
+           </button>
+
+         </td>
+        </tr>
+    {% endfor %}
+</table>
+<script type="text/javascript">
+    $('#example2').DataTable();
+</script>

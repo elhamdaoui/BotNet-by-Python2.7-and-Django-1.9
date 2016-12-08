@@ -1,0 +1,77 @@
+{% if test == True%}
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Type Cmd</th>
+                <th>Titre</th>
+                <th>Date d'ajout</th>
+                <th>Date debut</th>
+                <th>Date fin</th>
+                <th>Date d'affectation</th>
+                <th>Executée</th>
+                <th>Active</th>
+                <th>Exucutions</th>
+            </tr>
+        </thead>
+        <!--tfoot>
+            <tr>
+              <th>Type Cmd</th>
+              <th>Titre</th>
+              <th>Date d'ajout</th>
+              <th>Date debut</th>
+              <th>Date fin</th>
+              <th>Date d'affectation</th>
+              <th>Executée</th>
+              <th>Active</th>
+            </tr>
+        </tfoot-->
+        <tbody>
+        {% for cmd in cmds%}
+          {% if cmd.executee == True%}
+            <tr style="background-color:#cff0c8;">
+          {% elif cmd.commande.active == False %}
+          <tr style="background-color:#ebccd1;">
+          {% else %}
+          <tr style="background-color:#eee;">
+          {% endif %}
+                <td>{{cmd.commande.type_cmd.nom}}</td>
+                <td>{{cmd.commande.titre}}</td>
+                <td>{{cmd.commande.date_ajout}}</td>
+                <td>{{cmd.commande.date_debut}}</td>
+                <td>{{cmd.commande.date_fin}}</td>
+                <td>{{cmd.date_affectation}}</td>
+                <td>{{cmd.executee}}</td>
+                <td>{{cmd.commande.active}}</td>
+                <td>
+                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myLargeModal" onclick="click_btn_execs_cmd_cli({{ client.id_client }},{{ cmd.commande.id_cmd }});">
+                    <span class="glyphicon glyphicon-folder-open" data-toggle="tooltip" data-placement="top" title="Exécutions"></span>
+                  </button>
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" onclick="click_mod_client_commande({{ client.id_client }},{{ cmd.commande.id_cmd }});">
+                    <span class="glyphicon glyphicon-wrench" data-toggle="tooltip" data-placement="top" title="modifier"></span>
+                  </button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p>
+     <button type="button" title="Retour" class="btn btn-info btn-lg" onclick="back_info_agent();"  data-toggle="tooltip" data-placement="left" title="Retour">
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+     </button>
+   </p>
+    <script type="text/javascript">
+        $('#example').DataTable();
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+ {% else %}
+ <div class="alert alert-warning alert-dismissible" role="alert">
+  <strong>Aucune commande n'a trouvé </strong>
+</div>
+<p>
+ <button type="button" title="Retour" class="btn btn-info btn-lg" onclick="back_info_agent();">
+    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+ </button>
+</p>
+ {% endif %}

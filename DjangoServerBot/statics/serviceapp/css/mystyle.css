@@ -1,0 +1,199 @@
+/*@import "compass"*/
+
+@font-face {
+    font-family: 'Entypo';
+    src: url('serviceapp/fonts/entypo.eot');
+    src: url('serviceapp/fonts/entypo.eot?#iefix') format('embedded-opentype'),
+         url('serviceapp/fonts/entypo.woff') format('woff'),
+         url('serviceapp/fonts/entypo.ttf') format('truetype'),
+         url('serviceapp/fonts/entypo.svg#EntypoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+html{
+font: normal 13px HelveticaNeue, helvetica, Arial, sans-serif;
+color: #636061;
+}
+
+body{
+position: relative;
+margin: 0;
+padding: 0;
+}
+
+header{
+  position:fixed;
+  left:5px; top:0; right:0;
+  background-color:#fff;
+  height:5%;
+  width: 100%;
+  /*z-index:2000;*/
+  background-color: yellow;
+  border: 2px 2px 2px 2px solid black;
+  /*opacity: 0.3;*/
+}
+
+nav{
+  position:fixed;
+  left:1%; top:7%;
+  height:89%;
+  width:15%;
+  /*background-color: green;*/
+  border: 2px 2px 2px 2px solid black;
+}
+
+footer{
+  position:fixed;
+  left:1.3%; top:94%;
+  height:4%;
+  width:14%;
+  background-color: salmon;
+  border: 2px 2px 2px 2px solid black;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0;
+  padding-top: 3px;
+}
+
+section{
+  /*background-color: brown;*/
+  position: fixed;
+  left:16%; top:7%;
+  width: 82%;
+  margin: 0%;
+  margin-left: 5px;
+/*  border: 3px solid black;*/
+}
+
+.cle_not{
+  -webkit-box-shadow:  0 2px 3px lightgreen;
+          box-shadow:  0 2px 3px lightgreen;
+  padding: 2px;
+  margin-right: 2px;
+  border:1px red solid;
+}
+
+.val_not{
+  -webkit-box-shadow:  0 3px 5px yellow;
+            box-shadow:  0 3px 5px yellow;
+  color: #bd0b50;
+  font-weight:bold;
+  background-color: lightgreen;
+}
+
+
+nav div{
+  background-color: #BFBABB;
+  color: #3E3C3C;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  margin-top: 3%;
+  padding: 2%;
+  padding-top: 8%;
+  height: 10%;
+  -webkit-box-shadow:  1px 3px 3px black;
+            box-shadow:  1px 3px 3px black;
+  cursor: pointer;
+}
+
+#cont_notofications{
+  position: fixed;
+  width:30%;
+  /*background-color: red;*/
+  right:2%;
+  top:5.2%;
+  padding: 0%;
+  padding-top: 1%;
+  padding-right: 5px;
+  max-height:65%;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  z-index: 2000;
+  display: None;
+}
+
+.une_notification{
+  border: 0px solid lightgreen;
+  padding: 1%;
+  padding-bottom: 0;
+  /*cursor: pointer;*/
+  -webkit-box-shadow:  1px 1px 2px black;
+            box-shadow:  1px 1px 2px black;
+}
+.logo_notification{
+  width:100px;
+  height:100px;
+  background-color:white;
+  padding:0%;
+  margin:0%;
+}
+
+#myLargeModal, #myModal{
+  z-index: 3000;
+}
+.menuhover: hover{
+  background-color:#2aabd2;
+  color: white;
+  font-weight: bold;
+}
+.execution_k{
+  width:80%;
+  margin-left:9%;
+  -webkit-box-shadow:  0 3px 3px black;
+            box-shadow:  1px 2px 4px black;
+}
+
+.cont_imgs{
+  width:80%;
+  height:80%;
+  margin-left:9%;
+  -webkit-box-shadow:  0 3px 3px black;
+            box-shadow:  1px 2px 4px black;
+}
+
+.cont_forms{
+  width:70%;
+  margin-left:13%;
+  -webkit-box-shadow: 1px 2px 4px black;
+            box-shadow: 1px 2px 4px black;
+  -webkit-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.nava{
+    display: block;
+    width:95%;
+    height:15%;
+    margin-top: 3%;
+    margin-left:1%;
+    background-color: #0a0520;
+    cursor: pointer;
+    color: #dae9bf;
+    font-family: "Tw Cen MT",andalus,sans-serif;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    overflow: hidden;
+}
+.nava:hover{
+    transition-duration: 1s;
+    -webkit-transition-duration: 1s;
+    color: #3a3c36;
+    background-color: #dae9bf;
+    transform: translateX(2%) skewY(1deg) rotateZ(-2deg);
+    -webkit-transform: translateX(2%) skewY(1deg) rotateZ(-2deg);
+}
+.nava label{
+    display: inline-block;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: bold;
+    width:95%;
+    margin: 0%;
+    margin-left:2%;
+    margin-top:6%;
+    height:55%;
+    cursor: pointer;
+}

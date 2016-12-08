@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="fr">
+  <head>
+    <title>{% block title %}Mon serrvice{% endblock %}</title>
+    <meta charset="utf-8" content="text/html"/>
+	  <link href="{% static 'serviceapp/css/accueil.css' %}" rel="stylesheet" type="text/css" />
+  </head>
+    <body>
+        <header>Service site</header>
+        <nav>
+            {% block nav %}
+            <ul>
+                {% url 'clients' as clients %}
+                {% url 'messages' as msgs %}
+                {% url 'msgnonVue' as msgsNv %}
+        <li class="linnks"><a href="{{ clients }}">Costmuers</a></li>
+				<li class="linnks"><a href="#">Attacks</a></li>
+				<li class="linnks"><a href="#">Statistics</a></li>
+                <li class="linnks"><a href="{{ msgsNv }}">Not watched messages</a></li>
+                <li class="linnks"><a href="{{ msgs }}">All messages</a></li>
+
+            </ul>
+            {% endblock %}
+        </nav>
+        <section id="content">
+            {% block content %}{% endblock %}
+        </section>
+        <footer>© Copie Right AMHx16</footer>
+    </body>
+</html>

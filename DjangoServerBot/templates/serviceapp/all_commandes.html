@@ -1,0 +1,48 @@
+<div class="alert alert-warning" role="alert">
+    Tous les Commandes de notre Botnet
+</div>
+<table id="example3" class="table table-bordered table-striped table-hover" cellspacing="0" width="100%">
+    <caption>
+    </caption>
+    <thead>
+         <tr>
+         <th>Date Ajout</th><th>Type</th><th>Titre</th><th>Date Debut</th><th>Date Fin</th><th>Durée</th><th>Nb agents</th><th></th>
+          </tr>
+     </thead>
+    {% for cmd in commandes%}
+      {% if cmd.active == False %}
+        <tr class="danger text-primary">
+      {% else %}
+        <tr>
+      {% endif %}
+         <td>{{cmd.date_ajout}}</td>
+         <td>{{cmd.type_cmd.nom}}</td>
+         <td>{{cmd.titre}}</td>
+         <td>{{cmd.date_debut}}</td>
+         <td>{{cmd.date_fin}}</td>
+         <td>{{cmd.duree}}</td>
+         <td>{{cmd.nb_agents}}</td>
+         <td>
+           <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                Action
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation" class="bg-info menuhover" style="cursor:pointer;">
+                  <a role="menuitem" tabindex="-1" onclick="commande_afficher({{ cmd.id_cmd }});" data-toggle="modal" data-target="#myLargeModal">Afficher</a></li>
+                <li role="presentation" class="bg-warning menuhover" style="cursor:pointer;">
+                  <a role="menuitem" tabindex="-1" onclick="commande_modifier({{ cmd.id_cmd }});" data-toggle="modal" data-target="#myLargeModal">Modifier</a></li>
+                <li role="presentation" class="bg-danger menuhover" style="cursor:pointer;">
+                  <a role="menuitem" tabindex="-1" onclick="commande_supprimer({{ cmd.id_cmd }});" data-toggle="modal" data-target="#myModal">Supprimer</a></li>
+                <li role="presentation" class="bg-success menuhover" style="cursor:pointer;">
+                  <a role="menuitem" tabindex="-1" onclick="commande_affecter_agent({{ cmd.id_cmd }});" data-toggle="modal" data-target="#myLargeModal">S'affecter un agent</a></li>
+              </ul>
+            </div>
+         </td>
+        </tr>
+    {% endfor %}
+</table>
+<script type="text/javascript">
+    $('#example3').DataTable();
+</script>

@@ -1,0 +1,10 @@
+{% if supp == True%}
+<div class="alert alert-success" role="alert">
+L'agent <span class="label label-success">{{client.hostname}} {{client.USERNAME}}</span>
+ est modifié avec succès.  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+ </div>
+{% else %}
+<div class="alert alert-warning" role="alert">Cet agent ne peut pas modifier.
+<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+ </div>
+{% endif %}

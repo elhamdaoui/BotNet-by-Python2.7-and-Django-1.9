@@ -1,0 +1,11 @@
+************************************************************
+*************create les tables et acc�es via l'administration ******
+************************************************************
+-------dans le dossier qui contient manage.py----                                    *
+python2 manage.py makemigrations                                                      *
+python2 manage.py migrate auth                                                            *
+python2 manage.py migrate --run-syncdb
+python2 manage.py createsuperuser                                             *
+python2 manage.py runserver                                                                  *
+                                                                                                                        *
+*************************************************************
